@@ -13,43 +13,45 @@ Make a coin flip application. Modify the code below so that when the "Flip the c
   <body>
     <div id="root"></div>
     <script type="text/babel" data-presets="react">
-
     class HeadsTails extends React.Component {
-        constructor(){
-            super();
-            this.state = {
-                side: "none"
-            }
+      constructor(){
+        super();
+        this.state = {
+          side : "none"
+        }
+      }
+
+      flip(){
+        let gen = Math.random();
+        let value = ""
+
+        if(gen > 0.5){
+          value = "H"
+        }else{
+          value = "T"
         }
 
-            flip(){
-                let gen = Math.random();
-                let value = ""
+        this.setState({
+          side : value
+        })
+      }
 
-                if (gen >0.5){
-                    value = "Heads"
-                }else{
-                    value = "Tails"
-                }
 
-                this.setState({
-                    side: value
-                })
-            }
+
 
       render() {
         let imageUrl = "";
+        if(this.state.side == "H"){
+         imageUrl = 'images/quarter-front.png'
+       }else if(this.state.side == "T"){
+         imageUrl = 'images/quarter-back.png'
+       }
 
-        if(this.state.side == "Heads"){
-            imageUrl = 'images/quarter-front.png';
-        } else if(this.state.side == "Tails"){
-            imageUrl = 'images/quarter-back.png';
-        }
         return (
           <div>
             <h1>Heads or Tails?</h1>
             <img src={imageUrl}/>
-            <button onClick= { () => this.flip() }>Flip the coin!</button>
+            <button onClick = { () => this.flip()}>Flip the coin!</button>
           </div>
         );
       }
