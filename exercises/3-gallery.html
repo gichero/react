@@ -1,0 +1,84 @@
+<!--
+Make this gallery application work. The previous and next buttons should cycle through the 6 photos in the gallery.
+
+## Step 2
+
+After making the previous and next buttons work, also list all the images in the gallery as thumbnails (just use height/height to make them smaller), and make them clickable so that when clicked, the clicked photo becomes the main photo.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Babel Quickstart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" data-presets="react">
+    const images = [
+      'images/comfy.jpg',
+      'images/farted.jpg',
+      'images/hate.jpg',
+      'images/lolcat_airplane.jpg',
+      'images/mocked.jpg',
+      'images/monorail.jpg',
+    ];
+
+    class Gallery extends React.Component {
+        constructor(){
+            super();
+            this.state = {
+                on: true
+            };
+        }
+
+        previous() {
+            this.setState({
+                on: !this.state.on
+            });
+        }
+
+        next() {
+            this.setState({
+                on: this.state.on
+            });
+        }
+
+      render() {
+
+        let currentImage = this.props.images[1];
+        let buttonlabel ;
+
+        if (this.state.on) {
+            currentImage+1;
+            buttonLabel = 'Off';
+        } else {
+            currentImage-1;
+            buttonLabel = 'On'
+        }
+
+        return (
+          <div>
+            <button onClick={() => this.previous } >
+              Previous
+            </button>
+            <button onClick={() => this.next } >
+              Next
+            </button>
+            <br/>
+            <img src={currentImage}/>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <Gallery images={images}/>,
+      document.getElementById('root')
+    );
+
+    </script>
+  </body>
+</html>
