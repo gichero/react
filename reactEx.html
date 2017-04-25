@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Babel Quickstart</title>
+    <style>
+    body {
+      padding: 50px;
+    }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <link rel= "stylesheet" href="./bootstrap.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" data-presets="react">
+
+    class MyThing extends React.Component{
+      render() {
+        return <div>Hello, world!</div>;
+      }
+    }
+
+    class Hello extends React.Component {
+        render() {
+            return <h1>Hello, {this.props.name}!</h1>
+
+        }
+    }
+    class BSButton extends React.Component{
+        render(){
+            let classNames = ['btn'];
+            if (this.props.type) {
+                classNames.push('btn-' + this.props.type);
+            }
+            return (
+                 <button className = {classNames.join(' ')}>
+                {this.props.children}
+                </button>
+            );
+        }
+    }
+
+    class FormGroup extends React.Component{
+        render() {
+            return (
+                <div className = "form-group">
+                    <label>{this.props.label}</label>
+                    <input className="form-control" type = "text" name={this.props.name}/>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <form>
+        <Hello name = "Albert"/>
+        <Hello name = "my friend"/>
+
+         <BSButton type = "danger" size = "lg">Click me!</BSButton><br />
+         <BSButton type = "success" size = "sm">Click me again!</BSButton><br />
+         <BSButton type = "primary" size = "lg">Click me again!</BSButton>
+
+            <FormGroup label = "What is your name?" name="name"/>
+            <FormGroup label = "What is your favorite color?" name="color"/>
+            <FormGroup label = "If you were an animal, what animal would you be?" name="animal"/>
+            <button className="btn btn-default">Submit</button>
+        </form>,
+    document.getElementById('root'));
+
+    </script>
+  </body>
+</html>
